@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Segoe UI", sans-serif;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #ff9dcc 0%,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #150519,
+            #430b35,
+            #160519
+        );
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* ЗВЁЗДЫ */
+.stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        );
+    background-size:
+        80px 80px,
+        120px 120px;
+    background-position:
+        0 0,
+        40px 60px;
+    opacity: 0.35;
+    animation:
+        starsMove 15s linear infinite;
+}
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(80px);
+    }
+}
+/* КАРТОЧКА */
+.card {
+    position: relative;
+    z-index: 5;
+    width: min(90%, 650px);
+    margin: 30px 0;
+    padding: 45px 30px;
+    text-align: center;
+    background:
+        rgba(255, 255, 255, 0.10);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    backdrop-filter: blur(15px);
+    box-shadow:
+        0 25px 70px
+        rgba(0, 0, 0, 0.5),
+        inset 0 0 30px
+        rgba(255, 255, 255, 0.05);
+    animation:
+        appear 1.5s ease;
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform:
+            scale(0.7)
+            translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+/* СЕРДЦЕ */
+.big-heart {
+    font-size: 55px;
+    animation:
+        heartbeat 1.5s infinite;
+    filter:
+        drop-shadow(
+            0 0 15px #ff5ca8
+        );
+}
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.25);
+    }
+}
+/* ЗАГОЛОВОК */
+h1 {
+    margin-top: 10px;
+    font-size:
+        clamp(38px, 8vw, 70px);
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ffb6dc,
+            #ffffff
+        );
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 300px;
+    animation:
+        shine 3s infinite linear;
+}
+@keyframes shine {
+    from {
+        background-position: -300px;
+    }
+    to {
+        background-position: 300px;
+    }
+}
+/* ИМЯ */
+.name {
+    margin-top: 5px;
+    font-size: 32px;
+    color: #ffb7dc;
+    text-shadow:
+        0 0 20px
+        rgba(255, 100, 180, 0.7);
+}
+/* ЛИНИЯ */
+.line {
+    width: 80px;
+    height: 3px;
+    margin: 25px auto;
+    background: #ff8bc5;
+    border-radius: 10px;
+    box-shadow:
+        0 0 15px #ff8bc5;
+}
+/* ОСНОВНОЙ ТЕКСТ */
+.text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #fff4fa;
+}
+/* ПОДПИСЬ */
+.signature {
+    margin-top: 25px;
+    font-size: 20px;
+    color: #ffb7dc;
+    font-style: italic;
+}
+/* КНОПКА ПОЖЕЛАНИЙ */
+.wish-button {
+    margin-top: 30px;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 50px;
+    background:
+        linear-gradient(
+            45deg,
+            #ff4fa3,
+            #ff8ac6
+        );
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow:
+        0 8px 25px
+        rgba(255, 50, 150, 0.4);
+    transition: 0.3s;
+}
+.wish-button:hover {
+    transform:
+        translateY(-4px)
+        scale(1.05);
+    box-shadow:
+        0 12px 35px
+        rgba(255, 50, 150, 0.7);
+}
+/* ПОЖЕЛАНИЯ */
+.secret {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 1.2s ease,
+        opacity 1s ease,
+        margin 1s ease;
+}
+.secret.show {
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 25px;
+}
+.secret p {
+    font-size: 19px;
+    line-height: 1.8;
+    color: #ffe5f3;
+}
+/* КОНТЕЙНЕР ПОДАРКА */
+.gift-container {
+    opacity: 0;
+    transform:
+        translateY(25px)
+        scale(0.8);
+    pointer-events: none;
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+.gift-container.show {
+    opacity: 1;
+    transform:
+        translateY(0)
+        scale(1);
+    pointer-events: auto;
+}
+/* КНОПКА ПОДАРКА */
+.gift-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 17px 34px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    background:
+        linear-gradient(
+            45deg,
+            #ff3f9d,
+            #ff8ac6,
+            #ff3f9d
+        );
+    background-size: 200%;
+    box-shadow:
+        0 0 15px
+        rgba(255, 70, 160, 0.7),
+        0 0 35px
+        rgba(255, 70, 160, 0.4);
+    animation:
+        giftGlow 2s infinite;
+    transition: 0.3s;
+}
+@keyframes giftGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 15px
+            rgba(255, 70, 160, 0.7),
+            0 0 35px
+            rgba(255, 70, 160, 0.4);
+    }
+    50% {
+        box-shadow:
+            0 0 25px
+            rgba(255, 70, 160, 1),
+            0 0 60px
+            rgba(255, 70, 160, 0.7);
+    }
+}
+.gift-button:hover {
+    transform: scale(1.08);
+    background-position: 100%;
+}
+/* ЛЕТЯЩИЕ СЕРДЕЧКИ */
+.heart {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    z-index: 2;
+    animation:
+        fly 7s linear forwards;
+}
+@keyframes fly {
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(var(--x))
+            rotate(360deg);
+        opacity: 0;
+    }
+}
+/* САЛЮТ ИЗ СЕРДЕЧЕК */
+.burst {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    font-size: 25px;
+    pointer-events: none;
+    z-index: 20;
+    animation:
+        burst 1.5s ease-out forwards;
+}
+@keyframes burst {
+    from {
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+        opacity: 1;
+    }
+    to {
+        transform:
+            translate(
+                calc(-50% + var(--bx)),
+                calc(-50% + var(--by))
+            )
+            scale(1.4);
+        opacity: 0;
+    }
+}
+/* МОБИЛЬНЫЕ УСТРОЙСТВА */
+@media (max-width: 500px) {
+    .card {
+        padding: 35px 20px;
+    }
+    h1 {
+        font-size: 42px;
+    }
+    .name {
+        font-size: 27px;
+    }
+    .text {
+        font-size: 16px;
+    }
+    .secret p {
+        font-size: 17px;
+    }
+}
